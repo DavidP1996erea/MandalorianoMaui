@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    /*
+     * Se recoge a través del model el parámetro lanzado por el controller
+      */
+    @model List<SelectListItem>
+
+
+ 
+
+}
+
+
+<!-- Se crea un formulario que tendrá dentro un select, que tendrá como opciones el Model pasado por el Controller. Con el asp-action le decimos al botón a que Controller 
+    debe enviar la información.
+-->
+<form method="post" >
+
+    <select name="lista" asp-items="Model" ></select>
+
+    <button type="submit" asp-action="seleccionarMision">Ver detalles</button>
+
+</form>
+
+
+
+<!-- Se muestra los datos necesarios de la misión seleccionada -->
+
+@ViewBag.mostrarNombre
+<br />
+@ViewBag.mostraDescripcion
+<br />
+@ViewBag.mostrarRecompensa

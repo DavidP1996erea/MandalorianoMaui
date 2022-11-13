@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MandolarianoMaui.Views.PaginaPrincipal"
+             Title="PaginaPrincipal"
+             
+            
+             xmlns:model="clr-namespace:MandolarianoMaui.ViewModel" >
+
+
+    <!-- Se hace el binding con el view model, para ello se usa el model creado arriba-->
+    <ContentPage.BindingContext>
+
+        <model:clsMainPageVM>
+            
+        </model:clsMainPageVM>
+        
+    </ContentPage.BindingContext>
+    
+    <VerticalStackLayout>
+        
+        <!-- Se crea un listView, donde se le dirá que coja la lista creada en el viewModel -->
+        <ListView x:Name="ltvListadoMisiones" 
+                  ItemsSource="{Binding ListadoMisionesCompleto}"
+                  SelectedItem="{Binding MisionSeleccionada}">
+
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+
+
+                    <TextCell Text="{Binding NombreMision}"/>
+
+                </DataTemplate>
+                
+                
+                
+            </ListView.ItemTemplate>
+
+          
+        </ListView>
+        
+        <!-- Botón que mostrará los detalles de la misión -->
+        <Button x:Name="btnMostrarDetalles" Text="Mostrar detalles de la mision"
+                Command="{Binding MostrarDetallesCommand}"></Button>
+
+       
+        <Label x:Name="lblNombreMision" Text="{Binding MisionSeleccionada.NombreMision}"
+               IsVisible="{Binding DatosMisionEsVisible}"></Label>
+
+        
+        <Label x:Name="lblDatosMision" Text="{Binding MisionSeleccionada.Descripcion}"
+                IsVisible="{Binding DatosMisionEsVisible}"/>
+
+        <Label x:Name="lblRecompensa"  Text="{Binding MisionSeleccionada.Recompensa}"
+                IsVisible="{Binding DatosMisionEsVisible}"/> 
+        
+        
+    </VerticalStackLayout>
+</ContentPage>
